@@ -4,7 +4,8 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">{{ $course->TITLE }}</h1>
     <div>
-        <a href="{{ route('admin.courses.edit', $course->ID) }}" class="btn btn-primary">Edit Course</a>
+        <a href="{{ route('admin.courses.videos', $course->ID) }}" class="btn btn-primary">Manage Videos</a>
+        <a href="{{ route('admin.courses.edit', $course->ID) }}" class="btn btn-outline-primary">Edit Course</a>
         <a href="{{ route('admin.courses.index') }}" class="btn btn-outline-secondary">Back to List</a>
     </div>
 </div>
@@ -70,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($course->videos->sortBy('ORDER') as $video)
+                    @foreach($course->videos->sortBy('ID') as $video)
                     <tr style="cursor: pointer;" onclick="window.location='{{ route('admin.videos.edit', $video->ID) }}';">
                         <td>{{ $video->ORDER }}</td>
                         <td>{{ $video->TITLE }}</td>

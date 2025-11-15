@@ -157,4 +157,30 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->EMAIL;
     }
+
+    /**
+     * Get the course assignments for the user.
+     */
+    public function courseAssignments()
+    {
+        return $this->hasMany(UserCourseAssignment::class, 'USER_ID', 'ID');
+    }
+
+    /**
+     * Get the courses assigned to the user.
+     */
+    public function assignedCourses()
+    {
+        return $this->belongsToMany(Course::class, 'USER_COURSE_ASSIGNMENTS', 'USER_ID', 'COURSE_ID', 'ID', 'ID')
+            ->withPivot(['ASSIGNED_AT', 'COMPLETED_AT', 'PROGRESS_PERCENTAGE'])
+            ->withTimestamps();
+    }
+
+    /**
+     * Get the video progress for the user.
+     */
+    public function videoProgress()
+    {
+        return $this->hasMany(VideoProgress::class, 'USER_ID', 'ID');
+    }
 }

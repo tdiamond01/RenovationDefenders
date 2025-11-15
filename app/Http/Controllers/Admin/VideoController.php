@@ -15,7 +15,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::with('course')->orderBy('ORDER')->paginate(20);
+        $videos = Video::with('course')->orderBy('ID')->paginate(20);
         return view('admin.videos.index', compact('videos'));
     }
 

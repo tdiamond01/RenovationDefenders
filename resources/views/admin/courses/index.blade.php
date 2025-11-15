@@ -35,6 +35,7 @@
                         </td>
                         <td>{{ $course->created_at ? $course->created_at->format('M d, Y') : '-' }}</td>
                         <td onclick="event.stopPropagation();">
+                            <a href="{{ route('admin.courses.videos', $course->ID) }}" class="btn btn-outline-primary btn-sm">Videos</a>
                             <form action="{{ route('admin.courses.destroy', $course->ID) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this course?');">
                                 @csrf
                                 @method('DELETE')

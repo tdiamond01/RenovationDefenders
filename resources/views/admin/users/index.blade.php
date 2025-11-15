@@ -33,6 +33,7 @@
                         </td>
                         <td>{{ $user->CREATED_AT->format('M d, Y') }}</td>
                         <td onclick="event.stopPropagation();">
+                            <a href="{{ route('admin.users.courses', $user->ID) }}" class="btn btn-outline-primary btn-sm">Courses</a>
                             <form action="{{ route('admin.users.destroy', $user->ID) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this user?');">
                                 @csrf
                                 @method('DELETE')
