@@ -66,11 +66,17 @@ You can set these in the AWS Elastic Beanstalk console:
 
 ## Laravel Optimizations
 
-The deployment automatically runs the following optimizations:
-- `composer install --optimize-autoloader --no-dev`
+The deployment process includes:
+
+**During GitHub Actions Build:**
+- `composer install --optimize-autoloader --no-dev` (vendor directory included in deployment package)
+- Frontend asset compilation with Vite
+
+**After Deployment (Post-deploy hooks):**
 - `php artisan config:cache`
 - `php artisan route:cache`
 - `php artisan view:cache`
+- Automatic permissions setup for storage and cache directories
 
 ## File Structure
 
@@ -83,9 +89,19 @@ The deployment automatically runs the following optimizations:
 
 If deployment fails:
 1. Check GitHub Actions logs for build errors
-2. Check Elastic Beanstalk logs in AWS Console
+2. Check Elastic Beanstalk logs in AWS Console:
+   - Navigate to your environment → Logs → Request Logs
+   - Download the full logs to see detailed error messages
 3. Verify all secrets are correctly set in GitHub
 4. Ensure Beanstalk environment is healthy before deploying
+
+### Common Issues
+
+**"Engine execution has encountered an error" during deployment:**
+- This often occurs when `container_commands` in `.ebextensions` fail
+- Ensure Composer and dependencies are included in the deployment package from GitHub Actions
+- Use `.platform/hooks/postdeploy/` for Laravel-specific setup instead of `container_commands`
+- On Amazon Linux 2023, Composer is not available by default during container_commands phase
 
 ## First-Time Setup Checklist
 

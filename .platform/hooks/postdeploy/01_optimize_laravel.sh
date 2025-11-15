@@ -1,7 +1,14 @@
 #!/bin/bash
+set -e  # Exit on error
 
 # Navigate to application directory
 cd /var/app/current
+
+# Verify vendor directory exists (should be included from GitHub Actions build)
+if [ ! -d "vendor" ]; then
+    echo "ERROR: vendor directory not found! The deployment package may be incomplete."
+    exit 1
+fi
 
 # Set proper permissions
 chmod -R 775 storage bootstrap/cache
