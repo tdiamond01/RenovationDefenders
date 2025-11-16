@@ -14,6 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\IsAdmin::class,
         ]);
+
+        // Trust all proxies for AWS load balancer
+        $middleware->trustProxies(at: '*', headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR | \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
