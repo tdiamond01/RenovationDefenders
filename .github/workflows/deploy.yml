@@ -1,34 +1,34 @@
-name: Deploy to AWS Elastic Beanstalk
+name: Deploy to Elastic Beanstalk
 
 on:
   push:
     branches:
+      - initial-version-features
       - main
-  workflow_dispatch:
 
 jobs:
   deploy:
-    name: Deploy to Beanstalk
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up PHP
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
-          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, json, zip
+          php-version: '8.3'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, json, mbstring, pdo, zip
           coverage: none
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction --no-dev --optimize-autoloader
+        run: composer install --optimize-autoloader --no-dev --prefer-dist
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install NPM dependencies
         run: npm ci
@@ -36,13 +36,17 @@ jobs:
       - name: Build assets
         run: npm run build
 
-      - name: Create deployment artifact
+      - name: Create deployment package
         run: |
-          # Remove development files and directories
-          rm -rf node_modules tests .git .github .env.example
-
-          # Create zip file for deployment
-          zip -r deploy.zip . -x "*.git*" "node_modules/*" "tests/*" ".env"
+          zip -r deploy.zip . \
+            -x '*.git*' \
+            -x 'node_modules/*' \
+            -x 'tests/*' \
+            -x 'storage/logs/*' \
+            -x 'storage/framework/cache/*' \
+            -x 'storage/framework/sessions/*' \
+            -x 'storage/framework/views/*' \
+            -x '.elasticbeanstalk/*'
 
       - name: Get timestamp
         id: timestamp
@@ -55,12 +59,23 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: renovation-defenders
           environment_name: renovation-defenders-prod-final
-          region: us-west-2
           version_label: ${{ github.sha }}-${{ steps.timestamp.outputs.timestamp }}
+          region: us-west-2
           deployment_package: deploy.zip
           wait_for_deployment: true
           wait_for_environment_recovery: 300
 
       - name: Deployment successful
         if: success()
-        run: echo "Deployment to Elastic Beanstalk completed successfully!"
+        run: |
+          echo "✅ Deployment successful!"
+          echo "Environment: renovation-defenders-prod-final"
+          echo "Version: ${{ github.sha }}-${{ steps.timestamp.outputs.timestamp }}"
+          echo "Branch: ${{ github.ref_name }}"
+
+      - name: Deployment failed
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Check the AWS Elastic Beanstalk console for details."
+          echo "Environment: renovation-defenders-prod-final"
