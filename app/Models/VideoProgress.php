@@ -18,13 +18,19 @@ class VideoProgress extends Model
         'VIDEO_ID',
         'COMPLETED',
         'WATCH_TIME',
+        'WATCHED_DURATION',
+        'TOTAL_DURATION',
         'COMPLETED_AT',
+        'LAST_WATCHED_AT',
     ];
 
     protected $casts = [
         'COMPLETED' => 'boolean',
         'WATCH_TIME' => 'integer',
+        'WATCHED_DURATION' => 'integer',
+        'TOTAL_DURATION' => 'integer',
         'COMPLETED_AT' => 'datetime',
+        'LAST_WATCHED_AT' => 'datetime',
     ];
 
     public function user()
