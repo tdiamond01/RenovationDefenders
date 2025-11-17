@@ -156,7 +156,7 @@
                                         </div>
                                         <p class="text-muted">{{ $introVideo->DESCRIPTION }}</p>
                                         <video width="100%" controls>
-                                            <source src="{{ route('videos.stream', $introVideo->ID) }}" type="video/mp4">
+                                            <source src="{{ $introVideo->video_url }}" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
                                         <small class="text-muted mt-2 d-block">Duration: {{ $introVideo->DURATION }} seconds</small>
@@ -178,7 +178,7 @@
                                                 </div>
                                                 <p class="text-muted">{{ $video->DESCRIPTION }}</p>
                                                 <video width="100%" controls>
-                                                    <source src="{{ route('videos.stream', $video->ID) }}" type="video/mp4">
+                                                    <source src="{{ $video->video_url }}" type="video/mp4">
                                                     Your browser does not support the video tag.
                                                 </video>
                                                 <small class="text-muted mt-2 d-block">Duration: {{ $video->DURATION }} seconds</small>
