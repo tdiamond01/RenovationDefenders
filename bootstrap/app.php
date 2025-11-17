@@ -14,10 +14,16 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'admin' => \App\Http\Middleware\IsAdmin::class,
+            'no-cache' => \App\Http\Middleware\PreventCaching::class,
         ]);
 
         // Trust all proxies for AWS load balancer
         $middleware->trustProxies(at: '*', headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR | \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO);
+
+        // Prevent caching on web routes
+        $middleware->web(append: [
+            \App\Http\Middleware\PreventCaching::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
