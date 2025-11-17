@@ -60,6 +60,18 @@ return [
             'report' => false,
         ],
 
+        's3-videos' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_VIDEO_BUCKET', 'renovation-defenders-videos'),
+            'url' => env('AWS_VIDEO_URL'),
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
 
     /*

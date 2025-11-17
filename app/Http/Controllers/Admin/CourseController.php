@@ -153,8 +153,9 @@ class CourseController extends Controller
         ]);
 
         if ($request->hasFile('video_file')) {
-            $path = $request->file('video_file')->store('videos', 'local');
+            $path = $request->file('video_file')->store('videos', 's3-videos');
             $validated['FILE_PATH'] = $path;
+            $validated['STORAGE_DRIVER'] = 's3';
         }
 
         $validated['COURSE_ID'] = $id;

@@ -27,6 +27,13 @@ class VideoController extends Controller
     public function stream($id)
     {
         $video = Video::findOrFail($id);
+
+        // For S3 videos, redirect to the S3 URL
+        if ($video->STORAGE_DRIVER === 's3') {
+            return redirect($video->video_url);
+        }
+
+        // For local videos, stream from local storage
         $path = storage_path('app/' . $video->FILE_PATH);
 
         if (!file_exists($path)) {

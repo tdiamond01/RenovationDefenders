@@ -46,8 +46,9 @@ class VideoController extends Controller
         ]);
 
         if ($request->hasFile('video_file')) {
-            $path = $request->file('video_file')->store('videos', 'local');
+            $path = $request->file('video_file')->store('videos', 's3-videos');
             $validated['FILE_PATH'] = $path;
+            $validated['STORAGE_DRIVER'] = 's3';
         }
 
         unset($validated['video_file']);
@@ -96,13 +97,18 @@ class VideoController extends Controller
         ]);
 
         if ($request->hasFile('video_file')) {
-            // Delete old file
-            if ($video->FILE_PATH && Storage::disk('local')->exists($video->FILE_PATH)) {
-                Storage::disk('local')->delete($video->FILE_PATH);
+            // Delete old file from appropriate storage
+            if ($video->FILE_PATH) {
+                $oldDisk = $video->STORAGE_DRIVER === 's3' ? 's3-videos' : 'local';
+                if (Storage::disk($oldDisk)->exists($video->FILE_PATH)) {
+                    Storage::disk($oldDisk)->delete($video->FILE_PATH);
+                }
             }
 
-            $path = $request->file('video_file')->store('videos', 'local');
+            // Upload new file to S3
+            $path = $request->file('video_file')->store('videos', 's3-videos');
             $validated['FILE_PATH'] = $path;
+            $validated['STORAGE_DRIVER'] = 's3';
         }
 
         unset($validated['video_file']);
@@ -119,9 +125,12 @@ class VideoController extends Controller
     {
         $video = Video::findOrFail($id);
 
-        // Delete video file
-        if ($video->FILE_PATH && Storage::disk('local')->exists($video->FILE_PATH)) {
-            Storage::disk('local')->delete($video->FILE_PATH);
+        // Delete video file from appropriate storage
+        if ($video->FILE_PATH) {
+            $disk = $video->STORAGE_DRIVER === 's3' ? 's3-videos' : 'local';
+            if (Storage::disk($disk)->exists($video->FILE_PATH)) {
+                Storage::disk($disk)->delete($video->FILE_PATH);
+            }
         }
 
         $video->delete();
