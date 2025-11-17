@@ -18,12 +18,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Trust all proxies for AWS load balancer
         $middleware->trustProxies(at: '*', headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR | \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO);
-
-        // Trust all hosts - needed for load balancer
-        $middleware->trustHosts(at: fn () => [
-            'beta.renovationdefenders.com',
-            'renovation-defenders-prod-final.eba-2qqdgsb2.us-west-2.elasticbeanstalk.com',
-        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
