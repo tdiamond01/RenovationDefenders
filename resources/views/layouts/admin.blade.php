@@ -78,6 +78,11 @@
                                         <i class="bi bi-play-circle"></i> Videos
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('admin.catalog.*') ? 'active' : '' }}" href="{{ route('admin.catalog.index') }}">
+                                        <i class="bi bi-cart3"></i> Catalog
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </nav>

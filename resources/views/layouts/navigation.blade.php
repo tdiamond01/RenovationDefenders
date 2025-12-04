@@ -14,6 +14,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('catalog.*') ? 'active' : '' }}" href="{{ route('catalog.index') }}">Shop</a>
+                </li>
                 @if(Auth::user()->ROLE === 'admin')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Admin</a>
@@ -22,6 +25,17 @@
             </ul>
 
             <ul class="navbar-nav">
+                <li class="nav-item me-2">
+                    <a class="nav-link position-relative {{ request()->routeIs('cart.*') ? 'active' : '' }}" href="{{ route('cart.index') }}">
+                        <i class="bi bi-cart3"></i>
+                        @php $cartCount = App\Http\Controllers\CartController::getCartCount(); @endphp
+                        @if($cartCount > 0)
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+                                {{ $cartCount > 9 ? '9+' : $cartCount }}
+                            </span>
+                        @endif
+                    </a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->NAME }}

@@ -20,6 +20,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/videos', [\App\Http\Controllers\VideoController::class, 'index'])->name('videos.index');
     Route::get('/videos/{id}', [\App\Http\Controllers\VideoController::class, 'show'])->name('videos.show');
     Route::get('/videos/{id}/stream', [\App\Http\Controllers\VideoController::class, 'stream'])->name('videos.stream');
+
+    // Catalog (Shop) routes for users
+    Route::get('/shop', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog.index');
+    Route::get('/shop/{id}', [\App\Http\Controllers\CatalogController::class, 'show'])->name('catalog.show');
+
+    // Cart routes
+    Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update', [\App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/remove', [\App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/clear', [\App\Http\Controllers\CartController::class, 'clear'])->name('cart.clear');
+    Route::get('/checkout', [\App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout');
 });
 
 // Admin routes
@@ -40,6 +52,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('courses/{id}/videos/create', [\App\Http\Controllers\Admin\CourseController::class, 'createVideo'])->name('courses.create-video');
     Route::delete('courses/{courseId}/videos/{videoId}/remove', [\App\Http\Controllers\Admin\CourseController::class, 'removeVideo'])->name('courses.remove-video');
     Route::delete('courses/{courseId}/videos/{videoId}/delete', [\App\Http\Controllers\Admin\CourseController::class, 'deleteVideo'])->name('courses.delete-video');
+
+    // Catalog (Products) management routes
+    Route::resource('catalog', \App\Http\Controllers\Admin\CatalogController::class);
+    Route::get('catalog/{id}/prices', [\App\Http\Controllers\Admin\CatalogController::class, 'prices'])->name('catalog.prices');
+    Route::post('catalog/{id}/prices', [\App\Http\Controllers\Admin\CatalogController::class, 'addPrice'])->name('catalog.add-price');
+    Route::delete('catalog/{productId}/prices/{priceId}', [\App\Http\Controllers\Admin\CatalogController::class, 'deletePrice'])->name('catalog.delete-price');
 });
 
 require __DIR__.'/auth.php';
