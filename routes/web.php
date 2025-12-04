@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Public pages (accessible to everyone)
+Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->name('about');
+Route::get('/services', [\App\Http\Controllers\PageController::class, 'services'])->name('services');
+
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');

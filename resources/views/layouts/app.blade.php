@@ -19,6 +19,7 @@
     </head>
     <body>
         <div class="min-vh-100">
+            @include('layouts.top-ribbon')
             @include('layouts.navigation')
 
             <!-- Page Heading -->
