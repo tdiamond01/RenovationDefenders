@@ -1,7 +1,7 @@
 <x-app-layout>
     <style>
         .guide-hero {
-            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -22,7 +22,7 @@
         }
         .section-header h2 {
             font-size: 2rem;
-            color: #2c5530;
+            color: #667eea;
             margin-bottom: 10px;
         }
         .section-header .subtitle {
@@ -39,25 +39,25 @@
             padding: 15px 20px;
             margin-bottom: 10px;
             background: white;
-            border-left: 4px solid #4a7c59;
+            border-left: 4px solid #764ba2;
             border-radius: 0 5px 5px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .example-box {
             background: white;
-            border: 2px solid #4a7c59;
+            border: 2px solid #764ba2;
             border-radius: 10px;
             padding: 30px;
             margin: 30px auto;
         }
         .example-box h3 {
-            color: #2c5530;
+            color: #667eea;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #f5f5f5;
         }
         .example-box h4 {
-            color: #4a7c59;
+            color: #764ba2;
             margin-top: 20px;
             margin-bottom: 10px;
         }
@@ -76,7 +76,7 @@
             justify-content: center;
             min-width: 36px;
             height: 36px;
-            background: #2c5530;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             font-weight: bold;
             border-radius: 50%;
@@ -95,7 +95,7 @@
             content: "\2713";
             position: absolute;
             left: 18px;
-            color: #4a7c59;
+            color: #764ba2;
             font-size: 1.3rem;
             font-weight: bold;
         }
@@ -115,7 +115,7 @@
             height: 100%;
         }
         .guide-card h3 {
-            color: #2c5530;
+            color: #667eea;
             margin-bottom: 15px;
             font-size: 1.2rem;
         }
@@ -152,7 +152,7 @@
                 <p class="subtitle">Know exactly what you are looking for in your home renovation project by doing this first.</p>
             </div>
 
-            <h4 class="text-center mb-4" style="color: #4a7c59;">Topics Covered</h4>
+            <h4 class="text-center mb-4" style="color: #764ba2;">Topics Covered</h4>
 
             <ul class="topics-list">
                 <li>The first step to writing your personal scope</li>
@@ -224,7 +224,7 @@
                 <p class="subtitle">Use our step by step checklist to help you filter out the good vs the bad contractors.</p>
             </div>
 
-            <h4 class="text-center mb-4" style="color: #4a7c59;">Topics Covered</h4>
+            <h4 class="text-center mb-4" style="color: #764ba2;">Topics Covered</h4>
 
             <ul class="topics-list">
                 <li>Getting 3 competitive bidders</li>
@@ -272,7 +272,7 @@
                 <p class="subtitle">The flagship product, the most powerful tool in your pro protection packet.</p>
             </div>
 
-            <h4 class="text-center mb-4" style="color: #4a7c59;">Topics Covered</h4>
+            <h4 class="text-center mb-4" style="color: #764ba2;">Topics Covered</h4>
 
             <div class="row g-4 mb-5">
                 <div class="col-md-6 col-lg-4">
@@ -383,7 +383,7 @@
                 <p class="subtitle">Not all projects go right, fortunately, you have some potential tools at your disposal.</p>
             </div>
 
-            <h4 class="text-center mb-4" style="color: #4a7c59;">Topics Covered</h4>
+            <h4 class="text-center mb-4" style="color: #764ba2;">Topics Covered</h4>
 
             <ul class="topics-list">
                 <li>Introduction to Mandatory Binding Arbitration</li>
