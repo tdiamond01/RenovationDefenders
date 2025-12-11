@@ -17,6 +17,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('catalog.*') ? 'active' : '' }}" href="{{ route('catalog.index') }}">Shop</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('starter-guide') ? 'active' : '' }}" href="{{ route('starter-guide') }}">Starter Guide</a>
+                </li>
                 @if(Auth::user()->ROLE === 'admin')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Admin</a>

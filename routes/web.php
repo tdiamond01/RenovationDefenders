@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/shop', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog.index');
     Route::get('/shop/{id}', [\App\Http\Controllers\CatalogController::class, 'show'])->name('catalog.show');
 
+    // Starter Guide
+    Route::get('/starter-guide', [\App\Http\Controllers\PageController::class, 'starterGuide'])->name('starter-guide');
+
     // Cart routes
     Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');

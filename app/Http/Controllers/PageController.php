@@ -19,4 +19,12 @@ class PageController extends Controller
     {
         return view('pages.services');
     }
+
+    /**
+     * Display the Starter Guide page.
+     */
+    public function starterGuide()
+    {
+        return view('pages.starter-guide');
+    }
 }
