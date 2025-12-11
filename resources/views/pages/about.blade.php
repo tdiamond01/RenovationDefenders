@@ -89,58 +89,53 @@
             </div>
         </div>
 
-        <!-- Team Section -->
+        <!-- Instructor Section -->
         <div class="row mb-5">
             <div class="col-12 text-center mb-4">
-                <h2>Our Team</h2>
-                <p class="text-muted">Meet the experts behind Renovation Defenders</p>
+                <h2>Your Instructor</h2>
+                <p class="text-muted">Meet the expert behind Renovation Defenders</p>
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="col-lg-6 mx-auto mb-4">
                 <div class="card border-0 shadow-sm text-center h-100">
                     <div class="card-body p-4">
-                        <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
-                            <i class="bi bi-person-fill text-primary" style="font-size: 3rem;"></i>
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 120px; height: 120px;">
+                            <i class="bi bi-person-fill text-primary" style="font-size: 4rem;"></i>
                         </div>
-                        <h5 class="card-title mb-1">John Smith</h5>
-                        <p class="text-muted small mb-3">Founder & CEO</p>
-                        <p class="text-muted small mb-0">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Sed do eiusmod tempor incididunt ut labore.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card border-0 shadow-sm text-center h-100">
-                    <div class="card-body p-4">
-                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
-                            <i class="bi bi-person-fill text-success" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5 class="card-title mb-1">Sarah Johnson</h5>
-                        <p class="text-muted small mb-3">Head of Training</p>
-                        <p class="text-muted small mb-0">
-                            Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco laboris nisi ut aliquip.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card border-0 shadow-sm text-center h-100">
-                    <div class="card-body p-4">
-                        <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
-                            <i class="bi bi-person-fill text-info" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5 class="card-title mb-1">Mike Williams</h5>
-                        <p class="text-muted small mb-3">Technical Director</p>
-                        <p class="text-muted small mb-0">
-                            Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat.
+                        <h4 class="card-title mb-1">Stephen Selby</h4>
+                        <p class="text-muted mb-3">Lead Instructor</p>
+                        <p class="text-muted mb-0">
+                            With years of experience in the renovation industry, Stephen brings
+                            practical knowledge and expert guidance to help you succeed in your
+                            renovation projects.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Meet Stephen Video Section (Logged-in users only) -->
+        @auth
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h4 class="mb-0"><i class="bi bi-play-circle me-2"></i>Meet Stephen</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <video
+                            class="w-100"
+                            controls
+                            preload="metadata"
+                            poster=""
+                        >
+                            <source src="https://renovation-defenders-videos.s3.us-west-2.amazonaws.com/meet_stephen.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endauth
 
         <!-- CTA Section -->
         <div class="row">
