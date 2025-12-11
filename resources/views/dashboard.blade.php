@@ -212,7 +212,7 @@
                         </div>
                         @endif
 
-                        <div class="card">
+                        <div class="card mb-4">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold mb-3">Instructor</h5>
                                 <div class="d-flex align-items-center">
@@ -224,6 +224,20 @@
                                 </div>
                             </div>
                         </div>
+
+                        @if(Auth::user()->ROLE === 'user')
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title mb-0"><i class="bi bi-play-circle me-2"></i>Meet Stephen</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <video class="w-100" controls preload="metadata">
+                                    <source src="https://renovation-defenders-videos.s3.us-west-2.amazonaws.com/meet_stephen.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
                 </div>
