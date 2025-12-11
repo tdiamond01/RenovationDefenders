@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-public-layout>
     <div class="container">
         <!-- Hero Section -->
         <div class="row mb-5">
@@ -160,4 +160,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-public-layout>
